@@ -5,15 +5,16 @@ import CategoryChip from "@/components/CategoryChip";
 import ProductCard from "@/components/ProductCard";
 import HotDealCard from "@/components/HotDealCard";
 import { useFetch } from "@/hooks/useFetch";
-import { getProducts, getCategories, getHotDeals } from "@/api/mockApi";
+import { getProducts, getCategories, getHotDeals, getSettings } from "@/api/mockApi";
 import { ShimmerCard, ShimmerChip } from "@/components/Shimmer";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Info } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
   const { data: products, loading: productsLoading } = useFetch(getProducts);
   const { data: categories, loading: categoriesLoading } = useFetch(getCategories);
   const { data: hotDeals, loading: dealsLoading } = useFetch(getHotDeals);
+  const { data: settings } = useFetch(getSettings);
 
   const topProducts = products?.slice(0, 8) || [];
 
@@ -29,8 +30,23 @@ const Index = () => {
         <HeroBanner />
       </section>
 
+      {/* About Us / Tagline */}
+      {settings?.tagline && (
+        <section className="px-4 pt-6">
+          <div className="bg-primary/5 rounded-2xl p-5 md:p-6 border border-primary/10 flex flex-col md:flex-row items-start md:items-center gap-4">
+            <div className="bg-primary/10 p-3 rounded-2xl shrink-0 hidden md:flex">
+              <Info className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-lg md:text-xl font-bold text-foreground mb-1.5">{settings.tagline}</h2>
+              <p className="text-sm text-muted-foreground leading-relaxed md:max-w-2xl">{settings.description}</p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Categories */}
-      <section className="px-4 pt-6">
+      <section className="px-4 pt-8">
         <h2 className="text-lg font-bold text-foreground mb-3">Categories</h2>
         <div className="flex gap-5 overflow-x-auto scrollbar-hide pb-2">
           {categoriesLoading
@@ -50,7 +66,7 @@ const Index = () => {
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-bold text-foreground">🔥 Hot Deals</h2>
           <button
-            onClick={() => navigate("/categories")}
+            onClick={() => navigate("/category")}
             className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
           >
             View All <ArrowRight className="h-3.5 w-3.5" />
@@ -70,7 +86,7 @@ const Index = () => {
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-bold text-foreground">Top Products</h2>
           <button
-            onClick={() => navigate("/categories")}
+            onClick={() => navigate("/category")}
             className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
           >
             View All <ArrowRight className="h-3.5 w-3.5" />

@@ -22,11 +22,14 @@ export interface Banner {
 export interface Category {
   id: string;
   name: string;
-  icon: string;
+  image: string;
 }
 
 export interface StoreSettings {
   siteName: string;
+  tagline?: string;
+  description?: string;
+  logoUrl?: string;
   phone: string;
   whatsapp: string;
   address: string;
@@ -34,6 +37,13 @@ export interface StoreSettings {
   mapEmbed: string;
   hours: string;
   email: string;
+  socialLinks?: {
+    instagram?: string;
+    facebook?: string;
+    youtube?: string;
+    twitter?: string;
+  };
+  footerText?: string;
 }
 
 export interface HotDeal {

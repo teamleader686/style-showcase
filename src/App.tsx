@@ -12,6 +12,8 @@ import ProductDetail from "./pages/ProductDetail";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,8 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
+        <Footer />
+        <WhatsAppFloat />
         <BottomNav />
       </BrowserRouter>
     </TooltipProvider>

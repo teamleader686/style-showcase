@@ -1,13 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Smartphone, Shield, Zap, Headphones } from "lucide-react";
 import { Category } from "@/data/types";
-
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Smartphone,
-  Shield,
-  Zap,
-  Headphones,
-};
 
 interface CategoryChipProps {
   category: Category;
@@ -16,8 +8,6 @@ interface CategoryChipProps {
 }
 
 const CategoryChip = ({ category, isActive, onClick }: CategoryChipProps) => {
-  const Icon = iconMap[category.icon] || Smartphone;
-
   return (
     <button
       onClick={onClick}
@@ -27,13 +17,18 @@ const CategoryChip = ({ category, isActive, onClick }: CategoryChipProps) => {
     >
       <div
         className={cn(
-          "w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm",
+          "w-16 h-16 rounded-full overflow-hidden flex items-center justify-center transition-all duration-300 shadow-sm relative bg-secondary",
           isActive
-            ? "bg-primary text-primary-foreground shadow-md scale-105"
-            : "bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary"
+            ? "shadow-md scale-105 ring-2 ring-primary ring-offset-2 ring-offset-background"
+            : "hover:ring-2 hover:ring-primary/50 hover:ring-offset-2 hover:ring-offset-background"
         )}
       >
-        <Icon className="h-6 w-6" />
+        <img
+          src={category.image}
+          alt={category.name}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
       </div>
       <span
         className={cn(

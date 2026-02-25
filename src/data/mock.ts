@@ -126,7 +126,7 @@ export const products: Product[] = [
     description: "Military-grade drop protection with crystal clear transparency.",
     specs: ["Polycarbonate Back", "TPU Bumper", "Air Cushion Corners", "Anti-Yellowing"],
     images: [
-      "/images/c2-1.jpg",
+      "/images/c2-2.jpg",
       "/images/c2-2.jpg",
     ],
     isOffer: false,
@@ -222,7 +222,7 @@ export const products: Product[] = [
     description: "Premium braided nylon cable with fast data transfer and durability.",
     specs: ["1.5m Length", "Braided Nylon", "480Mbps Transfer", "10000+ Bend Tested"],
     images: [
-      "/images/ch3-1.jpg",
+      "/images/ch3-2.jpg",
       "/images/ch3-2.jpg",
     ],
     isOffer: false,
@@ -252,16 +252,15 @@ export const banners: Banner[] = [
 ];
 
 export const categories: Category[] = [
-  { id: "mobiles", name: "Mobiles", icon: "Smartphone" },
-  { id: "cases", name: "Cases", icon: "Shield" },
-  { id: "chargers", name: "Chargers", icon: "Zap" },
-  { id: "earphones", name: "Earphones", icon: "Headphones" },
+  { id: "mobiles", name: "Mobiles", image: "/images/p1-1.jpg" },
+  { id: "cases", name: "Accessories & Cases", image: "/images/c1-1.jpg" },
+  { id: "chargers", name: "Chargers", image: "/images/ch1-1.jpg" },
+  { id: "earphones", name: "Earphones", image: "/images/e1-1.jpg" },
 ];
 
 export const galleryImages: string[] = [
   "/images/gal-1.jpg",
   "/images/gal-2.jpg",
-  "/images/gal-3.jpg",
   "/images/gal-4.jpg",
   "/images/gal-5.jpg",
   "/images/gal-6.jpg",
@@ -271,6 +270,9 @@ export const galleryImages: string[] = [
 
 export const settings: StoreSettings = {
   siteName: "MobiMart",
+  tagline: "Your Premium Tech Destination",
+  description: "We provide the best mobile phones, accessories, and gadgets at unbeatable prices. Visit our store or order online for fast delivery.",
+  // logoUrl: "/images/logo.png", // Optional: Add a logo image
   phone: "9876543210",
   whatsapp: "919876543210",
   address: "123, Tech Street, Electronic City, Bangalore - 560100",
@@ -278,6 +280,11 @@ export const settings: StoreSettings = {
   mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.052745753186!2d77.6688!3d12.8456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDUwJzQ0LjIiTiA3N8KwNDAnMDcuNyJF!5e0!3m2!1sen!2sin!4v1",
   hours: "Mon - Sat: 10:00 AM - 9:00 PM | Sun: 11:00 AM - 7:00 PM",
   email: "hello@mobimart.in",
+  socialLinks: {
+    instagram: "https://instagram.com/mobimart",
+    facebook: "https://facebook.com/mobimart",
+  },
+  footerText: "Your trusted local electronics store.",
 };
 
 export function formatPrice(price: number): string {
