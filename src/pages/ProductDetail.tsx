@@ -1,18 +1,33 @@
-import { useSearchParams, Link } from "react-router-dom";
-import { products, formatPrice, settings } from "@/data/mock";
+import { useParams, Link } from "react-router-dom";
+import { formatPrice } from "@/data/mock";
+import { getProducts, getSettings } from "@/api/mockApi";
+import { useFetch } from "@/hooks/useFetch";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Share2, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { ShimmerCard } from "@/components/Shimmer";
 
 const ProductDetail = () => {
-  const [searchParams] = useSearchParams();
-  const id = Number(searchParams.get("id"));
-  const product = products.find((p) => p.id === id);
+  const { id } = useParams();
+  const productId = Number(id);
+  const { data: products, loading: productsLoading } = useFetch(getProducts);
+  const { data: settings } = useFetch(getSettings);
+  const product = products?.find((p) => p.id === productId);
   const [currentImage, setCurrentImage] = useState(0);
   const { toast } = useToast();
+
+  if (productsLoading) {
+    return (
+      <main className="pb-20 md:pb-8 px-4 pt-8">
+        <ShimmerCard className="mb-4" />
+        <div className="h-6 w-1/3 bg-muted animate-pulse rounded my-2"></div>
+        <div className="h-4 w-1/2 bg-muted animate-pulse rounded my-2"></div>
+      </main>
+    );
+  }
 
   if (!product) {
     return (
@@ -25,21 +40,22 @@ const ProductDetail = () => {
     );
   }
 
-  const whatsappUrl = `https://wa.me/${settings.whatsapp}?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${settings?.whatsapp || ''}?text=${encodeURIComponent(
     `Hi! I'm interested in ${product.name} (${formatPrice(product.price)}). ${window.location.href}`
   )}`;
 
   const handleShare = async () => {
+    const shareUrl = window.location.origin + "/product/" + product.id;
     const shareData = {
       title: product.name,
       text: `Check out ${product.name} at ${formatPrice(product.price)}!`,
-      url: window.location.href,
+      url: shareUrl,
     };
     try {
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(shareUrl);
         toast({ title: "Link copied!", description: "Product link copied to clipboard" });
       }
     } catch {

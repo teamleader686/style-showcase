@@ -1,18 +1,26 @@
 import { useState, useEffect, useCallback } from "react";
-import { banners } from "@/data/mock";
+import { getBanners } from "@/api/mockApi";
+import { useFetch } from "@/hooks/useFetch";
 import { cn } from "@/lib/utils";
+import { ShimmerBanner } from "@/components/Shimmer";
 
 const HeroBanner = () => {
+  const { data: banners, loading } = useFetch(getBanners);
   const [current, setCurrent] = useState(0);
 
   const next = useCallback(() => {
+    if (!banners) return;
     setCurrent((prev) => (prev + 1) % banners.length);
-  }, []);
+  }, [banners]);
 
   useEffect(() => {
+    if (!banners || banners.length === 0) return;
     const interval = setInterval(next, 4000);
     return () => clearInterval(interval);
-  }, [next]);
+  }, [next, banners]);
+
+  if (loading) return <ShimmerBanner />;
+  if (!banners || banners.length === 0) return null;
 
   return (
     <div className="relative w-full overflow-hidden rounded-2xl aspect-[2.4/1]">

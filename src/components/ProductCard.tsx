@@ -1,21 +1,16 @@
 import { Link } from "react-router-dom";
-import { Heart } from "lucide-react";
 import { Product } from "@/data/types";
 import { formatPrice } from "@/data/mock";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [liked, setLiked] = useState(false);
-
   return (
     <Link
-      to={`/product?id=${product.id}`}
+      to={`/product/${product.id}`}
       className="group block bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50"
     >
       <div className="relative aspect-square overflow-hidden bg-secondary">
@@ -30,20 +25,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {product.discount}% OFF
           </Badge>
         )}
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setLiked(!liked);
-          }}
-          className="absolute top-2 right-2 h-8 w-8 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center transition-colors hover:bg-card"
-        >
-          <Heart
-            className={cn(
-              "h-4 w-4 transition-colors",
-              liked ? "fill-accent text-accent" : "text-muted-foreground"
-            )}
-          />
-        </button>
       </div>
       <div className="p-3">
         <h3 className="font-semibold text-sm text-foreground line-clamp-1 group-hover:text-primary transition-colors">

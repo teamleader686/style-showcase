@@ -1,13 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { settings } from "@/data/mock";
+import { getSettings } from "@/api/mockApi";
+import { useFetch } from "@/hooks/useFetch";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const navLinks = [
   { path: "/", label: "Home" },
-  { path: "/categories", label: "Categories" },
+  { path: "/category", label: "Categories" },
   { path: "/gallery", label: "Gallery" },
   { path: "/contact", label: "Contact" },
 ];
@@ -16,11 +16,12 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const { data: settings } = useFetch(getSettings);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (search.trim()) {
-      navigate(`/categories?search=${encodeURIComponent(search.trim())}`);
+      navigate(`/category?search=${encodeURIComponent(search.trim())}`);
       setSearch("");
     }
   };
@@ -31,7 +32,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <ShoppingBag className="h-7 w-7 text-primary" />
           <span className="text-xl font-bold text-foreground tracking-tight">
-            {settings.siteName}
+            {settings?.siteName || "Store"}
           </span>
         </Link>
 

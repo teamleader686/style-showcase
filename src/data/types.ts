@@ -35,3 +35,12 @@ export interface StoreSettings {
   hours: string;
   email: string;
 }
+
+export interface HotDeal {
+  id: number;
+  name: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  discount: string;
+}

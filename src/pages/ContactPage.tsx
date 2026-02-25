@@ -1,8 +1,20 @@
-import { settings } from "@/data/mock";
+import { getSettings } from "@/api/mockApi";
+import { useFetch } from "@/hooks/useFetch";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, MapPin, Clock, Mail } from "lucide-react";
 
 const ContactPage = () => {
+  const { data: settings, loading } = useFetch(getSettings);
+
+  if (loading || !settings) {
+    return (
+      <main className="pb-20 md:pb-8 px-4 pt-4 space-y-6">
+        <h1 className="text-2xl font-bold text-foreground">Contact Us</h1>
+        <div className="h-64 bg-muted animate-pulse rounded-2xl w-full"></div>
+      </main>
+    );
+  }
+
   return (
     <main className="pb-20 md:pb-8 px-4 pt-4 space-y-6">
       <h1 className="text-2xl font-bold text-foreground">Contact Us</h1>

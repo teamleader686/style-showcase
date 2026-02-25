@@ -1,4 +1,39 @@
-import { Product, Banner, Category, StoreSettings } from "./types";
+import { Product, Banner, Category, StoreSettings, HotDeal } from "./types";
+
+export const hotDeals: HotDeal[] = [
+  {
+    id: 1,
+    name: "iPhone 15 Pro Max",
+    price: 134900,
+    originalPrice: 159900,
+    image: "/images/hot-deal-1.jpg",
+    discount: "16% OFF"
+  },
+  {
+    id: 5,
+    name: "Premium Silicone Case",
+    price: 999,
+    originalPrice: 1999,
+    image: "/images/hot-deal-2.jpg",
+    discount: "50% OFF"
+  },
+  {
+    id: 7,
+    name: "65W GaN Charger",
+    price: 1499,
+    originalPrice: 2499,
+    image: "/images/hot-deal-3.jpg",
+    discount: "40% OFF"
+  },
+  {
+    id: 9,
+    name: "Sony WH-1000XM5",
+    price: 26990,
+    originalPrice: 34990,
+    image: "/images/hot-deal-4.jpg",
+    discount: "23% OFF"
+  }
+];
 
 export const products: Product[] = [
   {
@@ -11,8 +46,8 @@ export const products: Product[] = [
     description: "The most powerful iPhone ever with A17 Pro chip, titanium design, and advanced camera system with 5x optical zoom.",
     specs: ["A17 Pro Chip", "48MP Camera", "6.7\" Super Retina XDR", "Titanium Body", "USB-C"],
     images: [
-      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600&h=600&fit=crop",
+      "/images/p1-1.jpg",
+      "/images/p1-2.jpg",
     ],
     isOffer: true,
     discount: 16,
@@ -27,8 +62,8 @@ export const products: Product[] = [
     description: "Galaxy AI is here. The most powerful Galaxy experience yet with built-in AI features.",
     specs: ["Snapdragon 8 Gen 3", "200MP Camera", "6.8\" QHD+ AMOLED", "S Pen Built-in", "5000mAh"],
     images: [
-      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&h=600&fit=crop",
+      "/images/p2-1.jpg",
+      "/images/p2-2.jpg",
     ],
     isOffer: true,
     discount: 10,
@@ -43,8 +78,8 @@ export const products: Product[] = [
     description: "Flagship killer with Snapdragon 8 Gen 3 and Hasselblad camera system.",
     specs: ["Snapdragon 8 Gen 3", "50MP Hasselblad", "6.82\" 2K LTPO", "5400mAh", "100W SUPERVOOC"],
     images: [
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=600&h=600&fit=crop",
+      "/images/p3-1.jpg",
+      "/images/p3-2.jpg",
     ],
     isOffer: false,
     discount: 7,
@@ -59,8 +94,8 @@ export const products: Product[] = [
     description: "The best of Google with the most advanced Pixel camera yet and Google AI.",
     specs: ["Tensor G3", "50MP Camera", "6.7\" LTPO OLED", "AI Magic Eraser", "7 Years Updates"],
     images: [
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=600&h=600&fit=crop",
+      "/images/p4-1.jpg",
+      "/images/p4-2.jpg",
     ],
     isOffer: true,
     discount: 21,
@@ -75,8 +110,8 @@ export const products: Product[] = [
     description: "Ultra-thin premium silicone case with microfiber lining for scratch protection.",
     specs: ["Silicone Material", "Microfiber Lining", "Precise Cutouts", "Wireless Charging Compatible"],
     images: [
-      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&h=600&fit=crop",
+      "/images/c1-1.jpg",
+      "/images/c1-2.jpg",
     ],
     isOffer: true,
     discount: 50,
@@ -91,8 +126,8 @@ export const products: Product[] = [
     description: "Military-grade drop protection with crystal clear transparency.",
     specs: ["Polycarbonate Back", "TPU Bumper", "Air Cushion Corners", "Anti-Yellowing"],
     images: [
-      "https://images.unsplash.com/photo-1609081219671-a6d151b17aaf?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&h=600&fit=crop",
+      "/images/c2-1.jpg",
+      "/images/c2-2.jpg",
     ],
     isOffer: false,
     discount: 54,
@@ -107,8 +142,8 @@ export const products: Product[] = [
     description: "Ultra-compact GaN charger with 65W fast charging for phones, tablets, and laptops.",
     specs: ["65W Output", "GaN Technology", "USB-C PD 3.0", "Compact Design", "Universal Voltage"],
     images: [
-      "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1628815113969-0487917e8b76?w=600&h=600&fit=crop",
+      "/images/ch1-1.jpg",
+      "/images/ch1-2.jpg",
     ],
     isOffer: true,
     discount: 40,
@@ -123,8 +158,8 @@ export const products: Product[] = [
     description: "Dual-port car charger with 20W USB-C and 18W USB-A fast charging.",
     specs: ["20W USB-C", "18W USB-A", "LED Indicator", "Overheat Protection"],
     images: [
-      "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1625723186993-52a8f83df15f?w=600&h=600&fit=crop",
+      "/images/ch2-1.jpg",
+      "/images/ch2-2.jpg",
     ],
     isOffer: false,
     discount: 47,
@@ -139,8 +174,8 @@ export const products: Product[] = [
     description: "Industry-leading noise canceling with Auto NC Optimizer and crystal clear hands-free calling.",
     specs: ["30mm Driver", "30hr Battery", "ANC", "LDAC Codec", "Multipoint Connection"],
     images: [
-      "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop",
+      "/images/e1-1.jpg",
+      "/images/e1-2.jpg",
     ],
     isOffer: true,
     discount: 23,
@@ -155,8 +190,8 @@ export const products: Product[] = [
     description: "Rebuilt from the sound up with Apple H2 chip. Adaptive Audio, personalized spatial audio.",
     specs: ["Apple H2 Chip", "ANC + Transparency", "6hr Battery", "MagSafe Case", "IP54 Rated"],
     images: [
-      "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=600&h=600&fit=crop",
+      "/images/e2-1.jpg",
+      "/images/e2-2.jpg",
     ],
     isOffer: false,
     discount: 16,
@@ -171,8 +206,8 @@ export const products: Product[] = [
     description: "Best budget 5G phone with 120Hz display and 50MP AI camera.",
     specs: ["Dimensity 6100+", "50MP AI Camera", "6.72\" 120Hz", "5000mAh", "33W Charging"],
     images: [
-      "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1580910051074-3eb694886571?w=600&h=600&fit=crop",
+      "/images/p5-1.jpg",
+      "/images/p5-2.jpg",
     ],
     isOffer: true,
     discount: 20,
@@ -187,8 +222,8 @@ export const products: Product[] = [
     description: "Premium braided nylon cable with fast data transfer and durability.",
     specs: ["1.5m Length", "Braided Nylon", "480Mbps Transfer", "10000+ Bend Tested"],
     images: [
-      "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1601524909162-ae8725290836?w=600&h=600&fit=crop",
+      "/images/ch3-1.jpg",
+      "/images/ch3-2.jpg",
     ],
     isOffer: false,
     discount: 56,
@@ -198,19 +233,19 @@ export const products: Product[] = [
 export const banners: Banner[] = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200&h=500&fit=crop",
+    image: "/images/banner-1.jpg",
     title: "Summer Mega Sale",
     subtitle: "Up to 50% off on all accessories",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=500&fit=crop",
+    image: "/images/banner-2.jpg",
     title: "New Arrivals",
     subtitle: "Latest smartphones now in stock",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=1200&h=500&fit=crop",
+    image: "/images/banner-3.jpg",
     title: "Premium Earphones",
     subtitle: "Experience studio-quality sound",
   },
@@ -224,14 +259,14 @@ export const categories: Category[] = [
 ];
 
 export const galleryImages: string[] = [
-  "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=600&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1528698827591-e19cef51a699?w=600&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&h=600&fit=crop",
+  "/images/gal-1.jpg",
+  "/images/gal-2.jpg",
+  "/images/gal-3.jpg",
+  "/images/gal-4.jpg",
+  "/images/gal-5.jpg",
+  "/images/gal-6.jpg",
+  "/images/gal-7.jpg",
+  "/images/gal-8.jpg",
 ];
 
 export const settings: StoreSettings = {

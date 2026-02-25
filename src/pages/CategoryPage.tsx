@@ -1,7 +1,9 @@
 import { useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import ProductCard from "@/components/ProductCard";
-import { products, categories } from "@/data/mock";
+import { getProducts, getCategories } from "@/api/mockApi";
+import { useFetch } from "@/hooks/useFetch";
+import { ShimmerCard } from "@/components/Shimmer";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 
@@ -14,8 +16,11 @@ const CategoryPage = () => {
   const [search, setSearch] = useState(initialSearch);
   const [sortBy, setSortBy] = useState("default");
 
+  const { data: products, loading: productsLoading } = useFetch(getProducts);
+  const { data: categories, loading: categoriesLoading } = useFetch(getCategories);
+
   const filtered = useMemo(() => {
-    let result = products;
+    let result = products || [];
 
     if (selectedCategory !== "all") {
       result = result.filter((p) => p.category === selectedCategory);
@@ -36,7 +41,7 @@ const CategoryPage = () => {
     else if (sortBy === "discount") result = [...result].sort((a, b) => b.discount - a.discount);
 
     return result;
-  }, [selectedCategory, search, sortBy]);
+  }, [selectedCategory, search, sortBy, products]);
 
   return (
     <main className="pb-20 md:pb-8">
@@ -68,7 +73,7 @@ const CategoryPage = () => {
           >
             All
           </button>
-          {categories.map((cat) => (
+          {!categoriesLoading && categories?.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
@@ -104,7 +109,13 @@ const CategoryPage = () => {
 
       {/* Product Grid */}
       <div className="px-4 pt-4">
-        {filtered.length > 0 ? (
+        {productsLoading ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <ShimmerCard key={i} />
+            ))}
+          </div>
+        ) : filtered.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {filtered.map((product) => (
               <ProductCard key={product.id} product={product} />

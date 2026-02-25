@@ -9,7 +9,7 @@ const SearchBar = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (search.trim()) {
-      navigate(`/categories?search=${encodeURIComponent(search.trim())}`);
+      navigate(`/category?search=${encodeURIComponent(search.trim())}`);
       setSearch("");
     }
   };

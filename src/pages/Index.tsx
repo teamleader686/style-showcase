@@ -3,13 +3,19 @@ import SearchBar from "@/components/SearchBar";
 import HeroBanner from "@/components/HeroBanner";
 import CategoryChip from "@/components/CategoryChip";
 import ProductCard from "@/components/ProductCard";
-import { products, categories } from "@/data/mock";
+import HotDealCard from "@/components/HotDealCard";
+import { useFetch } from "@/hooks/useFetch";
+import { getProducts, getCategories, getHotDeals } from "@/api/mockApi";
+import { ShimmerCard, ShimmerChip } from "@/components/Shimmer";
 import { ArrowRight } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
-  const offerProducts = products.filter((p) => p.isOffer);
-  const topProducts = products.slice(0, 8);
+  const { data: products, loading: productsLoading } = useFetch(getProducts);
+  const { data: categories, loading: categoriesLoading } = useFetch(getCategories);
+  const { data: hotDeals, loading: dealsLoading } = useFetch(getHotDeals);
+
+  const topProducts = products?.slice(0, 8) || [];
 
   return (
     <main className="pb-20 md:pb-8">
@@ -27,13 +33,15 @@ const Index = () => {
       <section className="px-4 pt-6">
         <h2 className="text-lg font-bold text-foreground mb-3">Categories</h2>
         <div className="flex gap-5 overflow-x-auto scrollbar-hide pb-2">
-          {categories.map((cat) => (
-            <CategoryChip
-              key={cat.id}
-              category={cat}
-              onClick={() => navigate(`/categories?cat=${cat.id}`)}
-            />
-          ))}
+          {categoriesLoading
+            ? Array.from({ length: 4 }).map((_, i) => <ShimmerChip key={i} />)
+            : categories?.map((cat) => (
+              <CategoryChip
+                key={cat.id}
+                category={cat}
+                onClick={() => navigate(`/category?cat=${cat.id}`)}
+              />
+            ))}
         </div>
       </section>
 
@@ -49,9 +57,11 @@ const Index = () => {
           </button>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {offerProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {dealsLoading
+            ? Array.from({ length: 4 }).map((_, i) => <ShimmerCard key={i} />)
+            : hotDeals?.map((deal) => (
+              <HotDealCard key={deal.id} deal={deal} />
+            ))}
         </div>
       </section>
 
@@ -67,9 +77,11 @@ const Index = () => {
           </button>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {topProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {productsLoading
+            ? Array.from({ length: 8 }).map((_, i) => <ShimmerCard key={i} />)
+            : topProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
         </div>
       </section>
     </main>
