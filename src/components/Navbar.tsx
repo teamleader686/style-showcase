@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Search, ShoppingBag } from "lucide-react";
+import { Search, ShoppingBag, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getSettings } from "@/api/mockApi";
 import { useFetch } from "@/hooks/useFetch";
@@ -50,25 +50,35 @@ const Navbar = () => {
           />
         </form>
 
-        <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => {
-            const isActive = location.pathname === link.path;
-            return (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                  isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="flex items-center gap-3">
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <Link
+            to="/offers"
+            className="p-2 rounded-full bg-secondary/50 hover:bg-secondary transition-colors relative text-primary"
+            title="Special Offers"
+          >
+            <Tag className="h-5 w-5" />
+            <span className="absolute top-1 right-1 h-2 w-2 bg-destructive rounded-full animate-pulse border border-card"></span>
+          </Link>
+        </div>
       </div>
     </header>
   );

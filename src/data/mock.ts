@@ -1,4 +1,58 @@
-import { Product, Banner, Category, StoreSettings, HotDeal } from "./types";
+import { Product, Banner, Category, StoreSettings, HotDeal, OfferItem } from "./types";
+
+export const offers: OfferItem[] = [
+  {
+    id: "offer1",
+    title: "Summer iPhone Fest",
+    description: "Get flat 20% off on all iPhone 15 series models. Exchange your old phone for an additional ₹5000 bonus.",
+    discount: "Flat 20% OFF",
+    validity: "Valid till 30th May 2026",
+    image: "/images/banner-1.jpg",
+    images: ["/images/banner-1.jpg", "/images/p1-1.jpg", "/images/p1-2.jpg", "/images/p2-1.jpg"],
+    expiryDate: "2026-05-30T23:59:59",
+    backgroundColor: "from-blue-500 to-indigo-600",
+    terms: [
+      "Offer valid only on iPhone 15, iPhone 15 Pro, and iPhone 15 Pro Max models.",
+      "Exchange bonus is subject to the condition of the old device.",
+      "Offer cannot be clubbed with any other ongoing promotions.",
+      "Standard terms and conditions apply."
+    ]
+  },
+  {
+    id: "offer2",
+    title: "Audio Upgrade Week",
+    description: "Buy any premium wireless earphones and get a free protective case. Valid on Sony, Apple, and Samsung earbuds.",
+    discount: "Free Case + 10% OFF",
+    validity: "Valid till 15th June 2026",
+    image: "/images/banner-3.jpg",
+    images: ["/images/banner-3.jpg", "/images/e1-1.jpg", "/images/e1-2.jpg", "/images/e2-1.jpg"],
+    expiryDate: "2026-06-15T23:59:59",
+    backgroundColor: "from-purple-500 to-pink-600",
+    terms: [
+      "Applicable on AirPods Pro, Sony WH-1000XM5, and Galaxy Buds.",
+      "Free case color is subject to availability.",
+      "10% off is applied at checkout automatically.",
+      "Limited period offer till stocks last."
+    ]
+  },
+  {
+    id: "offer3",
+    title: "Accessories Bonanza",
+    description: "Buy 1 Get 1 Free on all mobile covers, screen guards, and charging cables. Mix and match allowed.",
+    discount: "Buy 1 Get 1",
+    validity: "Valid till 10th May 2026",
+    image: "/images/banner-2.jpg",
+    images: ["/images/banner-2.jpg", "/images/c1-1.jpg", "/images/c2-2.jpg", "/images/ch1-1.jpg"],
+    expiryDate: "2026-05-10T23:59:59",
+    backgroundColor: "from-amber-400 to-orange-500",
+    terms: [
+      "Lowest priced item in the pair will be free.",
+      "Mix and match across categories (e.g., Buy a case, get a cable free).",
+      "Maximum of 5 free items per order.",
+      "Returns must include all items."
+    ]
+  }
+];
 
 export const hotDeals: HotDeal[] = [
   {
@@ -256,10 +310,6 @@ export const categories: Category[] = [
   { id: "cases", name: "Accessories & Cases", image: "/images/c1-1.jpg" },
   { id: "chargers", name: "Chargers", image: "/images/ch1-1.jpg" },
   { id: "earphones", name: "Earphones", image: "/images/e1-1.jpg" },
-  { id: "watches", name: "Smart Watches", image: "/images/p4-2.jpg" },
-  { id: "speakers", name: "Speakers", image: "/images/hot-deal-1.jpg" },
-  { id: "laptops", name: "Laptops", image: "/images/p2-1.jpg" },
-  { id: "powerbanks", name: "Power Banks", image: "/images/hot-deal-3.jpg" },
 ];
 
 export const galleryImages: string[] = [

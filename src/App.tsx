@@ -11,6 +11,8 @@ import CategoryPage from "./pages/CategoryPage";
 import ProductDetail from "./pages/ProductDetail";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
+import OfferPage from "./pages/OfferPage";
+import OfferDetail from "./pages/OfferDetail";
 import NotFound from "./pages/NotFound";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -30,6 +32,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/category" element={<CategoryPage />} />
             <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/offers" element={<OfferPage />} />
+            <Route path="/offer/:id" element={<OfferDetail />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFound />} />

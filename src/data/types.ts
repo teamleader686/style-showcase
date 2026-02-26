@@ -54,3 +54,16 @@ export interface HotDeal {
   image: string;
   discount: string;
 }
+
+export interface OfferItem {
+  id: string;
+  title: string;
+  description: string;
+  discount: string;
+  validity: string;
+  image: string;
+  images?: string[];
+  terms?: string[];
+  expiryDate?: string;
+  backgroundColor?: string;
+}

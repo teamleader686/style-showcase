@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Grid3X3, Image, Phone } from "lucide-react";
+import { Home, Grid3X3, Image, Phone, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const tabs = [
   { path: "/", icon: Home, label: "Home" },
   { path: "/category", icon: Grid3X3, label: "Categories" },
+  { path: "/offers", icon: Tag, label: "Offers" },
   { path: "/gallery", icon: Image, label: "Gallery" },
   { path: "/contact", icon: Phone, label: "Contact" },
 ];

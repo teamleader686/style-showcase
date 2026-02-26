@@ -1,5 +1,5 @@
-import { products, banners, galleryImages, settings, categories, hotDeals } from "../data/mock";
-import { Product, Banner, StoreSettings, Category, HotDeal } from "../data/types";
+import { products, banners, galleryImages, settings, categories, hotDeals, offers } from "../data/mock";
+import { Product, Banner, StoreSettings, Category, HotDeal, OfferItem } from "../data/types";
 
 // Simulate network delay
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -32,4 +32,14 @@ export const getSettings = async (): Promise<StoreSettings> => {
 export const getHotDeals = async (): Promise<HotDeal[]> => {
     await delay(300);
     return hotDeals;
+};
+
+export const getOffers = async (): Promise<OfferItem[]> => {
+    await delay(250);
+    return offers;
+};
+
+export const getOfferById = async (id: string): Promise<OfferItem | undefined> => {
+    await delay(300);
+    return offers.find((offer) => offer.id === id);
 };
