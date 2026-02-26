@@ -15,7 +15,7 @@ export const ShimmerCard = ({ className }: { className?: string }) => {
 
 export const ShimmerBanner = () => {
     return (
-        <div className="w-full rounded-2xl aspect-[2.4/1] bg-muted animate-pulse border border-border/50" />
+        <div className="w-full rounded-2xl bg-muted animate-pulse border border-border/50 h-[200px] md:h-[300px] lg:h-[400px]" />
     );
 };
 

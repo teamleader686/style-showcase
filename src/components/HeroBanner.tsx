@@ -23,12 +23,12 @@ const HeroBanner = () => {
   if (!banners || banners.length === 0) return null;
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl aspect-[2.4/1]">
+    <div className="relative w-full overflow-hidden rounded-2xl h-[200px] md:h-[300px] lg:h-[400px]">
       {banners.map((banner, i) => (
         <div
           key={banner.id}
           className={cn(
-            "absolute inset-0 transition-all duration-700 ease-in-out",
+            "absolute inset-0 transition-all duration-700 ease-in-out h-full w-full",
             i === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
           )}
         >
@@ -49,7 +49,7 @@ const HeroBanner = () => {
           </div>
         </div>
       ))}
-      <div className="absolute bottom-2 right-4 flex gap-1.5">
+      <div className="absolute bottom-4 right-4 flex gap-1.5 z-10">
         {banners.map((_, i) => (
           <button
             key={i}
@@ -58,6 +58,7 @@ const HeroBanner = () => {
               "h-1.5 rounded-full transition-all duration-300",
               i === current ? "w-6 bg-white" : "w-1.5 bg-white/50"
             )}
+            aria-label={`Go to slide ${i + 1}`}
           />
         ))}
       </div>
