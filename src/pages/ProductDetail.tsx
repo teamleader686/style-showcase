@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { ShimmerCard } from "@/components/Shimmer";
 import ProductCard from "@/components/ProductCard";
+import OrderFormModal from "@/components/OrderFormModal";
+import ShareModal from "@/components/ShareModal";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -18,6 +20,8 @@ const ProductDetail = () => {
   const { data: settings } = useFetch(getSettings);
   const product = products?.find((p) => p.id === productId);
   const [currentImage, setCurrentImage] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -53,27 +57,10 @@ const ProductDetail = () => {
     );
   }
 
-  const whatsappUrl = `https://wa.me/${settings?.whatsapp || ''}?text=${encodeURIComponent(
-    `Hi! I'm interested in ${product.name} (${formatPrice(product.price)}). ${window.location.href}`
-  )}`;
-
-  const handleShare = async () => {
-    const shareUrl = window.location.origin + "/product/" + product.id;
-    const shareData = {
-      title: product.name,
-      text: `Check out ${product.name} at ${formatPrice(product.price)}!`,
-      url: shareUrl,
-    };
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(shareUrl);
-        toast({ title: "Link copied!", description: "Product link copied to clipboard" });
-      }
-    } catch {
-      // User cancelled share
-    }
+  const shareData = {
+    title: product?.name || "Amazing Product",
+    text: `Check out ${product?.name} at ${product ? formatPrice(product.price) : ''}!`,
+    url: window.location.href,
   };
 
   return (
@@ -175,18 +162,21 @@ const ProductDetail = () => {
 
         {/* Action Buttons */}
         <div className="flex gap-3 pt-2">
-          <Button asChild className="flex-1 h-12 rounded-xl bg-success hover:bg-success/90 text-success-foreground font-semibold">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="h-5 w-5 mr-2" /> Order via WhatsApp
-            </a>
+          <Button
+            className="flex-1 h-12 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base shadow-lg transition-transform active:scale-[0.98]"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Order Now
           </Button>
           <Button
+            type="button"
             variant="outline"
             size="icon"
-            className="h-12 w-12 rounded-xl"
-            onClick={handleShare}
+            className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0 z-10"
+            onClick={() => setIsShareModalOpen(true)}
+            aria-label="Share Product"
           >
-            <Share2 className="h-5 w-5" />
+            <Share2 className="h-5 w-5 pointer-events-none" />
           </Button>
         </div>
 
@@ -202,6 +192,19 @@ const ProductDetail = () => {
           </div>
         )}
       </div>
+
+      <OrderFormModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={{ name: product.name, price: product.price }}
+        whatsappNumber={settings?.whatsapp || "919876543210"}
+      />
+
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        shareData={shareData}
+      />
     </main>
   );
 };

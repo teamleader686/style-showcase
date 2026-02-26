@@ -65,22 +65,22 @@ const OfferPage = () => {
                                 </div>
 
                                 {/* Offer Details */}
-                                <div className="p-5 flex flex-col flex-grow">
-                                    <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+                                <div className="p-4 md:p-5 flex flex-col flex-grow">
+                                    <h3 className="text-base md:text-lg font-bold text-foreground mb-1.5 md:mb-2 line-clamp-1 group-hover:text-primary transition-colors">
                                         {offer.title}
                                     </h3>
-                                    <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-grow">
+                                    <p className="text-xs md:text-sm text-muted-foreground line-clamp-2 mb-3 md:mb-4 flex-grow">
                                         {offer.description}
                                     </p>
 
-                                    <div className="flex items-center gap-1.5 text-xs font-medium text-amber-600 bg-amber-500/10 w-fit px-2.5 py-1 rounded-md mb-4 border border-amber-500/20">
-                                        <Clock className="h-3.5 w-3.5" />
+                                    <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium text-amber-600 bg-amber-500/10 w-fit px-2 py-1 md:px-2.5 md:py-1 rounded-md mb-3 md:mb-4 border border-amber-500/20">
+                                        <Clock className="h-3 w-3 md:h-3.5 md:w-3.5" />
                                         <span>{offer.validity}</span>
                                     </div>
 
                                     <button
                                         className={cn(
-                                            "w-full flex items-center justify-center gap-2 bg-primary/10 text-primary font-medium px-4 py-2.5 rounded-xl transition-colors",
+                                            "w-full flex items-center justify-center gap-2 bg-primary/10 text-primary font-medium text-sm md:text-base px-3 md:px-4 py-2 md:py-2.5 rounded-xl transition-colors",
                                             "hover:bg-primary hover:text-primary-foreground group-active:scale-[0.98]"
                                         )}
                                     >

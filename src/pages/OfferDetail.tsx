@@ -5,6 +5,9 @@ import { getOfferById } from "@/api/mockApi";
 import { OfferItem } from "@/data/types";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import OrderFormModal from "@/components/OrderFormModal";
+import ShareModal from "@/components/ShareModal";
 
 const OfferDetail = () => {
     const { id } = useParams<{ id: string }>();
@@ -12,6 +15,8 @@ const OfferDetail = () => {
     const [offer, setOffer] = useState<OfferItem | null>(null);
     const [loading, setLoading] = useState(true);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
     // Timer state
     const [timeLeft, setTimeLeft] = useState<{ d: number; h: number; m: number; s: number } | null>(null);
@@ -52,28 +57,10 @@ const OfferDetail = () => {
         return () => clearInterval(timer);
     }, [offer]);
 
-    const handleShare = () => {
-        if (navigator.share) {
-            navigator.share({
-                title: offer?.title,
-                text: offer?.description,
-                url: window.location.href,
-            }).catch(console.error);
-        } else {
-            navigator.clipboard.writeText(window.location.href);
-            toast.success("Offer link copied to clipboard");
-        }
-    };
-
-    const handleWhatsAppOrder = () => {
-        if (!offer) return;
-
-        const phoneNumber = "919876543210"; // Typical mock number or pull from settings
-        const message = `Hi! I'm interested in the "${offer.title}" offer.\n\nDiscount: ${offer.discount}\nDetails: ${window.location.href}`;
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-        window.open(whatsappUrl, '_blank');
+    const shareData = {
+        title: offer?.title || "Check this out!",
+        text: offer?.description || "Here's an amazing offer for you.",
+        url: window.location.href, // Always grab fresh URL
     };
 
     if (loading) {
@@ -118,14 +105,6 @@ const OfferDetail = () => {
                     >
                         <ArrowLeft className="h-5 w-5" />
                     </button>
-                    <div className="flex gap-3">
-                        <button
-                            onClick={handleShare}
-                            className="p-2 backdrop-blur-md bg-white/20 hover:bg-white/30 rounded-full text-white transition-colors shadow-sm"
-                        >
-                            <Share2 className="h-5 w-5" />
-                        </button>
-                    </div>
                 </div>
                 <img
                     src={selectedImage || offer.image}
@@ -173,12 +152,12 @@ const OfferDetail = () => {
 
             <div className="px-5 pt-8 pb-4">
                 {/* Title & Validity */}
-                <div className="mb-6">
-                    <h1 className="text-2xl md:text-3xl font-extrabold text-foreground mb-3 leading-tight pr-8">
+                <div className="mb-5 md:mb-6">
+                    <h1 className="text-xl md:text-3xl font-extrabold text-foreground mb-2 md:mb-3 leading-tight pr-8">
                         {offer.title}
                     </h1>
-                    <div className="flex items-center gap-2 text-amber-600 bg-amber-500/10 w-fit px-3 py-1.5 rounded-lg border border-amber-500/20 text-sm font-medium">
-                        <Clock className="h-4 w-4" />
+                    <div className="flex items-center gap-1.5 md:gap-2 text-amber-600 bg-amber-500/10 w-fit px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg border border-amber-500/20 text-xs md:text-sm font-medium">
+                        <Clock className="h-3.5 w-3.5 md:h-4 md:w-4" />
                         <span>{offer.validity}</span>
                     </div>
                 </div>
@@ -186,22 +165,22 @@ const OfferDetail = () => {
                 <div className="w-full h-px bg-border/60 my-6"></div>
 
                 {/* Description */}
-                <div className="mb-6">
-                    <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                <div className="mb-5 md:mb-6">
+                    <h2 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 md:mb-3">
                         About the Offer
                     </h2>
-                    <p className="text-foreground/90 leading-relaxed text-[15px]">
+                    <p className="text-foreground/90 leading-relaxed text-sm md:text-[15px]">
                         {offer.description}
                     </p>
                 </div>
 
                 {/* Countdown Timer */}
                 {timeLeft && (
-                    <div className="bg-secondary/50 rounded-2xl p-4 mb-6 border border-border/50">
-                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 text-center">
+                    <div className="bg-secondary/50 rounded-xl md:rounded-2xl p-3 md:p-4 mb-5 md:mb-6 border border-border/50">
+                        <h3 className="text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 md:mb-3 text-center">
                             Offer Ends In
                         </h3>
-                        <div className="flex justify-center gap-3">
+                        <div className="flex justify-center gap-2 md:gap-3">
                             {[
                                 { label: 'Days', value: timeLeft.d },
                                 { label: 'Hours', value: timeLeft.h },
@@ -209,10 +188,10 @@ const OfferDetail = () => {
                                 { label: 'Secs', value: timeLeft.s }
                             ].map((item, i) => (
                                 <div key={i} className="flex flex-col items-center">
-                                    <div className="bg-background shadow-sm border border-border rounded-xl w-14 h-14 flex items-center justify-center text-xl font-bold text-primary">
+                                    <div className="bg-background shadow-sm border border-border rounded-lg md:rounded-xl w-12 h-12 md:w-14 md:h-14 flex items-center justify-center text-lg md:text-xl font-bold text-primary">
                                         {item.value.toString().padStart(2, '0')}
                                     </div>
-                                    <span className="text-[10px] uppercase font-medium text-muted-foreground mt-1">
+                                    <span className="text-[9px] md:text-[10px] uppercase font-medium text-muted-foreground mt-1">
                                         {item.label}
                                     </span>
                                 </div>
@@ -221,16 +200,36 @@ const OfferDetail = () => {
                     </div>
                 )}
 
+                {/* Action Buttons */}
+                <div className="flex gap-3 mb-6 md:mb-8 mt-2">
+                    <Button
+                        className="flex-1 h-14 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base shadow-lg transition-transform active:scale-[0.98]"
+                        onClick={() => setIsOrderModalOpen(true)}
+                    >
+                        Order Now
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        className="h-14 w-14 rounded-xl flex items-center justify-center shrink-0 z-10 border-2"
+                        onClick={() => setIsShareModalOpen(true)}
+                        aria-label="Share Offer"
+                    >
+                        <Share2 className="h-5 w-5 pointer-events-none" />
+                    </Button>
+                </div>
+
                 {/* Terms and Conditions */}
                 {offer.terms && offer.terms.length > 0 && (
-                    <div className="bg-secondary/30 rounded-2xl p-5 mb-8 border border-border/50">
-                        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                    <div className="bg-secondary/30 rounded-xl md:rounded-2xl p-4 md:p-5 mb-6 md:mb-8 border border-border/50">
+                        <h2 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 md:mb-4">
                             Terms & Conditions
                         </h2>
-                        <ul className="space-y-3">
+                        <ul className="space-y-2.5 md:space-y-3">
                             {offer.terms.map((term, index) => (
-                                <li key={index} className="flex items-start gap-3 text-[14px] text-foreground/80">
-                                    <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5 opacity-80" />
+                                <li key={index} className="flex items-start gap-2 md:gap-3 text-xs md:text-[14px] text-foreground/80 leading-relaxed">
+                                    <CheckCircle2 className="h-4 w-4 md:h-5 md:w-5 text-primary shrink-0 mt-0.5 opacity-80" />
                                     <span>{term}</span>
                                 </li>
                             ))}
@@ -239,21 +238,18 @@ const OfferDetail = () => {
                 )}
             </div>
 
-            {/* Sticky Bottom Action */}
-            <div className="fixed bottom-16 md:bottom-0 left-0 right-0 p-3 bg-background/90 backdrop-blur-xl border-t border-border z-40">
-                <div className="max-w-2xl mx-auto px-2">
-                    <button
-                        onClick={handleWhatsAppOrder}
-                        className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-base py-3.5 rounded-full shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2"
-                    >
-                        {/* We use an SVG path for the WhatsApp icon as lucide does not have official WhatsApp */}
-                        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                        Order on WhatsApp
-                    </button>
-                </div>
-            </div>
+            <OrderFormModal
+                isOpen={isOrderModalOpen}
+                onClose={() => setIsOrderModalOpen(false)}
+                product={{ name: offer.title, price: 0 }} // Offers don't specifically have a mock price mapped in mock data, use title.
+                whatsappNumber="919876543210"
+            />
+
+            <ShareModal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+                shareData={shareData}
+            />
         </div>
     );
 };
