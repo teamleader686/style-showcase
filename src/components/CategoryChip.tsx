@@ -12,7 +12,7 @@ const CategoryChip = ({ category, isActive, onClick }: CategoryChipProps) => {
     <button
       onClick={onClick}
       className={cn(
-        "flex flex-col items-center gap-2 shrink-0 transition-all",
+        "flex flex-col items-center gap-2 shrink-0 transition-all w-full",
       )}
     >
       <div
@@ -32,7 +32,7 @@ const CategoryChip = ({ category, isActive, onClick }: CategoryChipProps) => {
       </div>
       <span
         className={cn(
-          "text-xs font-medium transition-colors",
+          "text-xs font-medium transition-colors text-center line-clamp-2",
           isActive ? "text-primary" : "text-muted-foreground"
         )}
       >

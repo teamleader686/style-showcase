@@ -35,9 +35,9 @@ const Index = () => {
       {/* Categories */}
       <section className="px-4 pt-8">
         <h2 className="text-lg font-bold text-foreground mb-3">Categories</h2>
-        <div className="flex gap-5 overflow-x-auto scrollbar-hide pb-2">
+        <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5">
           {categoriesLoading
-            ? Array.from({ length: 4 }).map((_, i) => <ShimmerChip key={i} />)
+            ? Array.from({ length: 8 }).map((_, i) => <ShimmerChip key={i} />)
             : categories?.map((cat) => (
               <CategoryChip
                 key={cat.id}

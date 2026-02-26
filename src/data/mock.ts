@@ -256,6 +256,10 @@ export const categories: Category[] = [
   { id: "cases", name: "Accessories & Cases", image: "/images/c1-1.jpg" },
   { id: "chargers", name: "Chargers", image: "/images/ch1-1.jpg" },
   { id: "earphones", name: "Earphones", image: "/images/e1-1.jpg" },
+  { id: "watches", name: "Smart Watches", image: "/images/p4-2.jpg" },
+  { id: "speakers", name: "Speakers", image: "/images/hot-deal-1.jpg" },
+  { id: "laptops", name: "Laptops", image: "/images/p2-1.jpg" },
+  { id: "powerbanks", name: "Power Banks", image: "/images/hot-deal-3.jpg" },
 ];
 
 export const galleryImages: string[] = [

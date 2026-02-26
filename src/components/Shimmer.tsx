@@ -21,7 +21,7 @@ export const ShimmerBanner = () => {
 
 export const ShimmerChip = () => {
     return (
-        <div className="flex flex-col items-center gap-2 shrink-0 animate-pulse">
+        <div className="flex flex-col items-center gap-2 shrink-0 animate-pulse w-full">
             <div className="w-16 h-16 rounded-full bg-muted shadow-sm"></div>
             <div className="h-3 bg-muted rounded w-12"></div>
         </div>
