@@ -30,20 +30,7 @@ const Index = () => {
         <HeroBanner />
       </section>
 
-      {/* About Us / Tagline */}
-      {settings?.tagline && (
-        <section className="px-4 pt-6">
-          <div className="bg-primary/5 rounded-2xl p-5 md:p-6 border border-primary/10 flex flex-col md:flex-row items-start md:items-center gap-4">
-            <div className="bg-primary/10 p-3 rounded-2xl shrink-0 hidden md:flex">
-              <Info className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h2 className="text-lg md:text-xl font-bold text-foreground mb-1.5">{settings.tagline}</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed md:max-w-2xl">{settings.description}</p>
-            </div>
-          </div>
-        </section>
-      )}
+
 
       {/* Categories */}
       <section className="px-4 pt-8">

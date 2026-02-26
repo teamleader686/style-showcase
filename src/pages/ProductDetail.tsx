@@ -5,10 +5,11 @@ import { useFetch } from "@/hooks/useFetch";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Share2, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { ShimmerCard } from "@/components/Shimmer";
+import ProductCard from "@/components/ProductCard";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -18,6 +19,18 @@ const ProductDetail = () => {
   const product = products?.find((p) => p.id === productId);
   const [currentImage, setCurrentImage] = useState(0);
   const { toast } = useToast();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentImage(0);
+  }, [productId]);
+
+  const relatedProducts = useMemo(() => {
+    if (!products || !product) return [];
+    return products
+      .filter((p) => p.category === product.category && p.id !== product.id)
+      .slice(0, 4);
+  }, [products, product]);
 
   if (productsLoading) {
     return (
@@ -176,6 +189,18 @@ const ProductDetail = () => {
             <Share2 className="h-5 w-5" />
           </Button>
         </div>
+
+        {/* Related Products */}
+        {relatedProducts.length > 0 && (
+          <div className="pt-8 pb-4 border-t mt-4 border-border/40">
+            <h2 className="text-xl font-bold text-foreground mb-4">Related Products</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+              {relatedProducts.map((relatedProduct) => (
+                <ProductCard key={relatedProduct.id} product={relatedProduct} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
