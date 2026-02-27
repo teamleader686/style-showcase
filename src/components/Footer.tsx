@@ -12,7 +12,7 @@ const navLinks = [
 
 const paymentLogos = [
     { name: "UPI", src: "https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg", className: "h-4 md:h-5" },
-    { name: "Visa", src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg", className: "h-3.5 md:h-4" },
+    { name: "Visa", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1CefFQibodbtysbX6PStx8gLRhlPgfMoLlA&s", className: "h-3.5 md:h-4" },
     { name: "Mastercard", src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg", className: "h-5 md:h-6" },
     { name: "RuPay", src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/RuPay.svg", className: "h-4 md:h-5" },
 ];
