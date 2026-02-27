@@ -67,3 +67,26 @@ export interface OfferItem {
   expiryDate?: string;
   backgroundColor?: string;
 }
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  location: string;
+  phone: string;
+  rating: number;
+  review: string;
+  image: string;
+}
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+export interface StatItem {
+  id: number;
+  value: number;
+  suffix: string;
+  label: string;
+}

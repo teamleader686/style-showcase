@@ -1,5 +1,5 @@
-import { products, banners, galleryImages, settings, categories, hotDeals, offers } from "../data/mock";
-import { Product, Banner, StoreSettings, Category, HotDeal, OfferItem } from "../data/types";
+import { products, banners, galleryImages, settings, categories, hotDeals, offers, testimonials, faqs, stats } from "../data/mock";
+import { Product, Banner, StoreSettings, Category, HotDeal, OfferItem, Testimonial, FAQItem, StatItem } from "../data/types";
 
 // Simulate network delay
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

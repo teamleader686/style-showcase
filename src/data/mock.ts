@@ -1,4 +1,4 @@
-import { Product, Banner, Category, StoreSettings, HotDeal, OfferItem } from "./types";
+import { Product, Banner, Category, StoreSettings, HotDeal, OfferItem, Testimonial, FAQItem, StatItem } from "./types";
 
 export const offers: OfferItem[] = [
   {
@@ -340,6 +340,103 @@ export const settings: StoreSettings = {
   },
   footerText: "Your trusted local electronics store.",
 };
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "Rahul Sharma",
+    location: "Bangalore, Karnataka",
+    phone: "9876543210",
+    rating: 5,
+    review: "Got my iPhone 15 Pro at an amazing price! Original product with bill and warranty. Delivery was super fast, within 2 hours. Highly recommended!",
+    image: "/images/p1-1.jpg",
+  },
+  {
+    id: 2,
+    name: "Priya Patel",
+    location: "Surat, Gujarat",
+    phone: "8765432109",
+    rating: 5,
+    review: "Best store for mobile accessories! Ordered a case and charger combo, both were premium quality. The WhatsApp support is very responsive.",
+    image: "/images/p2-1.jpg",
+  },
+  {
+    id: 3,
+    name: "Amit Verma",
+    location: "New Delhi, Delhi",
+    phone: "7654321098",
+    rating: 4,
+    review: "Bought Sony headphones during their audio sale. Great discount and genuine product. Packaging was excellent and delivery was on time.",
+    image: "/images/e1-1.jpg",
+  },
+  {
+    id: 4,
+    name: "Sneha Reddy",
+    location: "Hyderabad, Telangana",
+    phone: "6543210987",
+    rating: 5,
+    review: "I'm a repeat customer now! Every product I've bought has been 100% genuine. Their exchange offer on phones is the best in the market.",
+    image: "/images/p4-1.jpg",
+  },
+  {
+    id: 5,
+    name: "Vikram Singh",
+    location: "Jaipur, Rajasthan",
+    phone: "9988776655",
+    rating: 5,
+    review: "Ordered AirPods Pro 2 from here. Got it in original sealed packaging with Apple warranty card. Price was cheaper than Amazon! Will definitely order again.",
+    image: "/images/e2-1.jpg",
+  },
+  {
+    id: 6,
+    name: "Anjali Nair",
+    location: "Kochi, Kerala",
+    phone: "8877665544",
+    rating: 4,
+    review: "The GaN charger I ordered is amazing quality. Fast charging really works! Customer service was helpful when I had questions about compatibility.",
+    image: "/images/ch1-1.jpg",
+  },
+];
+
+export const faqs: FAQItem[] = [
+  {
+    id: "faq-1",
+    question: "Are all products genuine and original?",
+    answer: "Yes, 100%! We only sell genuine, brand-authorized products. Every item comes with an original manufacturer warranty, proper invoice, and is sourced directly from official distributors.",
+  },
+  {
+    id: "faq-2",
+    question: "How fast is the delivery?",
+    answer: "For local orders within the city, we offer same-day delivery within 2-4 hours. For outstation orders, delivery takes 2-5 business days via trusted courier partners.",
+  },
+  {
+    id: "faq-3",
+    question: "What is your return & exchange policy?",
+    answer: "We offer a 7-day easy return policy for all products in unused condition with original packaging. For defective items, we provide free replacement or full refund within 15 days.",
+  },
+  {
+    id: "faq-4",
+    question: "What payment methods do you accept?",
+    answer: "We accept all major payment methods — UPI (GPay, PhonePe, Paytm), Credit/Debit Cards, Net Banking, and Cash on Delivery. EMI options are also available on select products.",
+  },
+  {
+    id: "faq-5",
+    question: "How can I track my order?",
+    answer: "Once your order is dispatched, you'll receive a tracking link via WhatsApp and SMS. You can also contact us directly on WhatsApp for real-time order updates.",
+  },
+  {
+    id: "faq-6",
+    question: "Do you offer warranty on products?",
+    answer: "Yes! All products come with manufacturer warranty. Phones come with 1-year warranty, accessories with 6-month warranty. We also help you with warranty claims directly.",
+  },
+];
+
+export const stats: StatItem[] = [
+  { id: 1, value: 500, suffix: "+", label: "Happy Customers" },
+  { id: 2, value: 1000, suffix: "+", label: "Products Sold" },
+  { id: 3, value: 4.8, suffix: "★", label: "Average Rating" },
+  { id: 4, value: 3, suffix: "+", label: "Years in Business" },
+];
 
 export function formatPrice(price: number): string {
   return "₹" + price.toLocaleString("en-IN");

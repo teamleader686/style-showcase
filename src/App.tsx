@@ -16,6 +16,7 @@ import OfferDetail from "./pages/OfferDetail";
 import NotFound from "./pages/NotFound";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import AnnouncementBar from "@/components/AnnouncementBar";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
+        <AnnouncementBar />
         <Navbar />
         <div className="max-w-5xl mx-auto min-h-screen">
           <Routes>

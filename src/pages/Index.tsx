@@ -4,6 +4,11 @@ import HeroBanner from "@/components/HeroBanner";
 import CategoryChip from "@/components/CategoryChip";
 import ProductCard from "@/components/ProductCard";
 import HotDealCard from "@/components/HotDealCard";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import StatsCounter from "@/components/StatsCounter";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
+import CTABanner from "@/components/CTABanner";
 import { useFetch } from "@/hooks/useFetch";
 import { getProducts, getCategories, getHotDeals, getSettings } from "@/api/mockApi";
 import { ShimmerCard, ShimmerChip } from "@/components/Shimmer";
@@ -76,6 +81,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Why Choose Us */}
+      <WhyChooseUs />
+
       {/* Top Products */}
       <section className="px-4 pt-10 md:pt-14">
         <div className="flex items-center justify-between mb-5">
@@ -100,6 +108,18 @@ const Index = () => {
             ))}
         </div>
       </section>
+
+      {/* Stats Counter */}
+      <StatsCounter />
+
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* FAQ */}
+      <FAQ />
+
+      {/* CTA Banner */}
+      <CTABanner />
     </main>
   );
 };
