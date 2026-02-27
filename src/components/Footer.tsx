@@ -10,6 +10,13 @@ const navLinks = [
     { path: "/contact", label: "Contact Us" },
 ];
 
+const paymentLogos = [
+    { name: "UPI", src: "https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg", className: "h-4 md:h-5" },
+    { name: "Visa", src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg", className: "h-3.5 md:h-4" },
+    { name: "Mastercard", src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg", className: "h-5 md:h-6" },
+    { name: "RuPay", src: "https://upload.wikimedia.org/wikipedia/commons/d/d1/RuPay.svg", className: "h-4 md:h-5" },
+];
+
 const Footer = () => {
     const { data: settings } = useFetch(getSettings);
 
@@ -121,6 +128,23 @@ const Footer = () => {
                             </div>
                         </div>
                     )}
+                </div>
+            </div>
+
+            {/* 100% Secure Payments */}
+            <div className="flex flex-col items-center justify-center pt-5 md:pt-8 mb-6 md:mb-8 border-t border-border/30">
+                <h4 className="text-[10px] md:text-xs font-bold text-muted-foreground mb-4 uppercase tracking-widest">
+                    100% Secure Payments
+                </h4>
+                <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
+                    {paymentLogos.map((logo) => (
+                        <div
+                            key={logo.name}
+                            className="bg-white/90 dark:bg-white px-3 py-2 rounded-xl premium-shadow-sm flex items-center justify-center min-w-[60px] md:min-w-[70px] border border-border/50 hover:-translate-y-0.5 transition-transform duration-300"
+                        >
+                            <img src={logo.src} alt={logo.name} className={`${logo.className} object-contain`} loading="lazy" />
+                        </div>
+                    ))}
                 </div>
             </div>
 
