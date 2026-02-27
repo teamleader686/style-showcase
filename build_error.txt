@@ -1,0 +1,62 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 build
+> vite build
+
+[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+node.exe : Browserslist: browsers data 
+(caniuse-lite) is 8 months old. Please run:
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Br 
+   owserslist: b...ld. Please run::String) [],  
+   RemoteException
+    + FullyQualifiedErrorId : NativeCommandErro 
+   r
+ 
+  npx update-browserslist-db@latest
+  Why you should do it regularly: 
+https://github.com/browserslist/update-db#readme
+[32mΓ£ô[39m 108 modules transformed.
+[31mx[39m Build failed in 1.62s
+[31merror during build:
+[31m[vite:esbuild] Transform failed with 1 
+error:
+E:/WhatNext Solution/style-showcase/src/componen
+ts/OrderFormModal.tsx:151:0: ERROR: Expected 
+")" but found "151"[31m
+file: [36mE:/WhatNext Solution/style-showcase/s
+rc/components/OrderFormModal.tsx:151:0[31m
+[33m
+[33mExpected ")" but found "151"[33m
+149|                  149:             </div>
+150|              150:         </div>
+151|  151:     );
+   |  ^
+152|      152:
+153|  };
+[31m
+    at failureErrorWithLog (E:\WhatNext Solution
+\style-showcase\node_modules\esbuild\lib\main.js
+:1472:15)
+    at E:\WhatNext Solution\style-showcase\node_
+modules\esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> 
+(E:\WhatNext Solution\style-showcase\node_module
+s\esbuild\lib\main.js:622:9)
+    at handleIncomingPacket (E:\WhatNext Solutio
+n\style-showcase\node_modules\esbuild\lib\main.j
+s:677:12)
+    at Socket.readFromStdout (E:\WhatNext Soluti
+on\style-showcase\node_modules\esbuild\lib\main.
+js:600:7)
+    at Socket.emit (node:events:518:28)
+    at addChunk 
+(node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode 
+(node:internal/streams/readable:512:3)
+    at Readable.push 
+(node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead 
+(node:internal/stream_base_commons:189:23)[39m
